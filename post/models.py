@@ -54,3 +54,11 @@ class BusinessArea(models.Model):
 
     class Meta:
         db_table = 'business_areas'
+
+
+class UserApply(models.Model):
+    user = models.ForeignKey('user.User', verbose_name="사용자", on_delete=models.CASCADE)
+    jobpost = models.ForeignKey(JobPost, verbose_name="지원공고", on_delete=models.SET_NULL, null=True)
+
+    class Meta:
+        db_table = 'user_applies'
