@@ -71,6 +71,7 @@ class JobView(APIView):
         return Response(job_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class ApplyView(APIView):
+    permission_classes = [IsCandidateUser]
     
     def post(self, request):
         user = request.user.id
