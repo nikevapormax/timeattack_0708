@@ -11,9 +11,11 @@ from .models import (
 from .serializers import JobPostSerializer, UserApplySerializer
 from django.db.models.query_utils import Q
 
+from ta.permissions import IsCandidateUser
+
 
 class SkillView(APIView):
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [IsCandidateUser]
 
     def get(self, request):
         skills = request.query_params.getlist('skills', '')
