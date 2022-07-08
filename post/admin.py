@@ -10,3 +10,4 @@ admin.site.register(models.Company)
 admin.site.register(models.CompanyBusinessArea)
 admin.site.register(models.BusinessArea)
 
+admin.site.register(models.UserApply)
