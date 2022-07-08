@@ -94,10 +94,3 @@ class UserLog(models.Model):
 
     class Meta:
         db_table = 'user_logs'
-
-class UserApply(models.Model):
-    user = models.ForeignKey(User, verbose_name="사용자", on_delete=models.CASCADE)
-    jobpost = models.ManyToManyField('post.JobPost', verbose_name="지원공고")
-
-    class Meta:
-        db_table = 'user_applies'
