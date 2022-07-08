@@ -2,7 +2,7 @@ from rest_framework.permissions import BasePermission
 from rest_framework.exceptions import APIException
 
 from rest_framework import status
-from user.models import UserType as UserTypeModel
+from user.models import User as UserModel
 
 class GenericAPIException(APIException):
     def __init__(self, status_code, detail=None, code=None):
@@ -28,8 +28,8 @@ class IsCandidateUser(BasePermission):
                     "detail": "서비스를 이용하기 위해 로그인 해주세요.",
                 }
             raise GenericAPIException(status_code=status.HTTP_401_UNAUTHORIZED, detail=response)
-        
-        if user.is_authenticated and  UserTypeModel.user_type == "candidate" and request.method in self.SAFE_METHODS:      
+
+        if user.is_authenticated and  user.user_type_id == 1 and request.method in self.SAFE_METHODS:   
             return True
 
         return False
