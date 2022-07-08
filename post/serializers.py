@@ -7,7 +7,8 @@ from .models import (
     JobPost,
     Company,
     CompanyBusinessArea,
-    BusinessArea
+    BusinessArea, 
+    UserApply 
 )
 
 
@@ -77,3 +78,14 @@ class JobPostSkillSetSerializer(serializers.ModelSerializer):
     class Meta:
         model = JobPostSkillSet
         fields = ('id', 'skill_set', 'job_post')
+
+
+class UserApplySerializer(serializers.ModelSerializer):
+    username = serializers.SerializerMethodField()
+    
+    def get_username(self, obj):
+        return obj.user.username
+    
+    class Meta:
+        model = UserApply
+        fields = ['user', 'username', 'jobpost']
